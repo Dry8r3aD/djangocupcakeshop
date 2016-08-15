@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Cupcake
 
-# Create your views here.
+def cupcake_list(request):
+    cakes = Cupcake.objects.all().order_by('-createdAt')
+    context = {"cakes": cakes}
+    return render(request,"menu/list.html",context)
